@@ -36,23 +36,28 @@ export class UsersService {
   }
 
   async addRole(dto: AddRoleDto) {
-    const user = await this.userRepository.findByPk(dto.userId)
+    const user = await this.findUserById(dto.userId)
     const role = await this.roleService.getRoleByValue(dto.value)
-    if (role && user) {
-      await user.$add('role', role.id)
-      return dto
-    }
-    throw new HttpException('User or role is not found', HttpStatus.NOT_FOUND)
+
+    await user.$add('role', role.id)
+    return dto
   }
 
   async ban(dto: BanUserDto) {
-    const user = await this.userRepository.findByPk(dto.userId)
-    if (!user) {
-      throw new HttpException('User is not found', HttpStatus.NOT_FOUND)
-    }
+    const user = await this.findUserById(dto.userId)
+
     user.banned = true
     user.banReason = dto.banReason
     await user.save()
+    return user
+  }
+
+  async findUserById(userId: number): Promise<User> {
+    const user = await this.userRepository.findByPk(userId)
+    if (!user) {
+      throw new HttpException('User is not found', HttpStatus.NOT_FOUND)
+    }
+
     return user
   }
 }

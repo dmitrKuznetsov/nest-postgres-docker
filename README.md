@@ -34,12 +34,8 @@ npm run seed:undo:all:dev
 docker-compose -p rest-app up -d
 ```
 # Documentation 
-Swagger  
-Guard for swagger? 
-
-# Usage
-1. 
-2.  
+Swagger: http://localhost:5000/api/docs
+Guard for swagger?! 
 
 # Tests?
 

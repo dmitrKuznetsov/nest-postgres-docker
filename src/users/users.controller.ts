@@ -1,8 +1,8 @@
-import { ValidationPipe } from './../pipes/validation.pipe';
+// import { ValidationPipe } from './../pipes/validation.pipe';
 import { BanUserDto } from './dto/ban-user.dto';
 import { AddRoleDto } from './dto/add-role.dto';
 import { RolesGuard } from './../auth/roles.guard';
-import { JwtAuthGuard } from './../auth/jwt-auth.guard';
+// import { JwtAuthGuard } from './../auth/jwt-auth.guard';
 import { User } from './users.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';

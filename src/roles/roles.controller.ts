@@ -1,6 +1,7 @@
 import { CreateRoleDto } from './dto/create-role.dto';
 import { RolesService } from './roles.service';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { GetRoleByValueDto } from './dto/get-role-by-value.dto';
 
 @Controller('roles')
 export class RolesController {
@@ -13,7 +14,7 @@ export class RolesController {
   }
 
   @Get('/:value')
-  getByValue(@Param('value') value: string) {
-    return this.roleService.getRoleByValue(value)
+  getByValue(@Param() dto: GetRoleByValueDto) {
+    return this.roleService.getRoleByValue(dto.value)
   }
 }
