@@ -1,5 +1,9 @@
 FROM node:12.13-alpine
 
+RUN apk update
+
+RUN apk add bash
+
 WORKDIR /app
 
 COPY package*.json ./
@@ -10,4 +14,4 @@ COPY . .
 
 COPY ./dist ./dist
 
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start"]

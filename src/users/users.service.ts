@@ -15,6 +15,10 @@ export class UsersService {
   async createUser(dto: CreateUserDto) {
     const user = await this.userRepository.create(dto)
     const role = await this.roleService.getRoleByValue('ADMIN')
+    if (!role) {
+      throw new HttpException(`Create role 'ADMIN' first`, HttpStatus.NOT_FOUND)
+    }
+
     await user.$set('roles', [role.id]) //initialisation
     user.roles = [role]
     return user
