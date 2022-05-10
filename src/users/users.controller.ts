@@ -6,8 +6,8 @@ import { RolesGuard } from './../auth/roles.guard';
 import { User } from './users.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
-import { Body, Controller, Get, Post, UseGuards, UsePipes } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, HttpStatus, Post, UseGuards, UsePipes } from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth.decorator';
 
 @ApiTags('Users')
@@ -16,16 +16,9 @@ export class UsersController {
  
   constructor(private usersService: UsersService) {}
 
-  @ApiOperation({summary: 'Create user'})
-  @ApiResponse({status: 200, type: User})
-  // @UsePipes(ValidationPipe)
-  @Post()
-  create(@Body() userDto: CreateUserDto) {
-    return this.usersService.createUser(userDto)
-  }
-
-  @ApiOperation({summary: 'Get all users'})
-  @ApiResponse({status: 200, type: [User]})
+  @ApiBearerAuth()
+  @ApiResponse({status: HttpStatus.OK, type: [User]})
+  @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'No access' })
   // @UseGuards(JwtAuthGuard)
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
@@ -34,8 +27,10 @@ export class UsersController {
     return this.usersService.getAllUsers()
   }
  
+  @ApiBearerAuth()
   @ApiOperation({summary: 'Add role'})
-  @ApiResponse({status: 200})
+  @ApiResponse({status: HttpStatus.OK, type: [AddRoleDto]})
+  @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'No access' })
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Post('/role')
@@ -43,8 +38,10 @@ export class UsersController {
     return this.usersService.addRole(dto)
   }
  
+  @ApiBearerAuth()
   @ApiOperation({summary: 'Ban user'})
-  @ApiResponse({status: 200})
+  @ApiResponse({status: HttpStatus.OK, type: [User]})
+  @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'No access' })
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Post('/ban')

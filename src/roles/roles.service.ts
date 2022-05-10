@@ -9,6 +9,10 @@ export class RolesService {
   constructor(@InjectModel(Role) private roleRepository: typeof Role) {}
   
   async createRole (dto: CreateRoleDto) {
+    const existingRole = await this.roleRepository.findOne({where: {value: dto.value}})
+    if (existingRole) {
+      throw new HttpException(`Role already exist`, HttpStatus.CONFLICT)
+    }
     const role = await this.roleRepository.create(dto)
     return role
   }

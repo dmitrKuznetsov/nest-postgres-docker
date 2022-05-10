@@ -1,6 +1,8 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 
 export class GetRoleByValueDto {
-  @IsString()
+  @ApiProperty({example: 'ADMIN'})
+  @IsString({message: 'Must be a string'})
   value: string;
 }

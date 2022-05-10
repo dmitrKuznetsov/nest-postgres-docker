@@ -11,11 +11,14 @@ This RESTful application include:
 Set POSTGRES_HOST in .development.env
 ```bash
 # Run postgres + pgadmin
-docker-compose -f docker-compose-postgres.yml -p postgres-test up -d
+docker-compose -f docker-compose-postgres.yml -p postgres-test up -d    
+
 # Run server
 npm run start:dev
+
 # Database seeding. Seed USER & ADMIN roles.
 npm run seed:all:dev
+
 # If you need undo seed
 npm run seed:undo:all:dev
 ```
@@ -34,10 +37,9 @@ npm run seed:undo:all:dev
 docker-compose -p rest-app up -d
 ```
 # Documentation 
-Swagger: http://localhost:5000/api/docs
-Guard for swagger?! 
+Open API: http://localhost:5000/api  
 
-# Tests?
-
+# Tests
+Not implemented
 
 

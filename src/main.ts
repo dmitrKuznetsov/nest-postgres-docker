@@ -11,10 +11,10 @@ async function start() {
     .setTitle('Portfolio project Nest-Postgres-Docker')
     .setDescription('REST API documentation')
     .setVersion('1.0.0')
-    // .addTag('kuzds')
+    .addBearerAuth()
     .build()
   const document = SwaggerModule.createDocument(app, config)
-  SwaggerModule.setup('/api/docs', app, document)
+  SwaggerModule.setup('api', app, document)
 
   app.useGlobalPipes(new ValidationPipe())
 
