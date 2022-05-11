@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger"
-import { IsNumber, IsString } from "class-validator"
+import { IsString } from "class-validator"
 
 export class CreatePostDto {
 
@@ -12,6 +12,5 @@ export class CreatePostDto {
   readonly content: string
 
   @ApiProperty({example: 1})
-  @IsNumber({}, {message: 'Must be a number'})
   readonly userId: number
 }

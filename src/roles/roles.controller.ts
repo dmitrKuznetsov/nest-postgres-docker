@@ -12,14 +12,14 @@ export class RolesController {
   constructor(private roleService: RolesService) {}
 
   @ApiOperation({summary: 'Create role'})
-  @ApiResponse({status: HttpStatus.OK, type: [Role]})
-  @ApiResponse({status: HttpStatus.CONFLICT, description: 'Role already exist' })
+  @ApiResponse({status: HttpStatus.CREATED, type: Role})
+  @ApiResponse({status: HttpStatus.BAD_REQUEST, description: 'Role already exist' })
   @Post()
   create(@Body() dto: CreateRoleDto) {
     return this.roleService.createRole(dto)
   }
 
-  @ApiResponse({status: HttpStatus.OK, type: [Role]})
+  @ApiResponse({status: HttpStatus.OK, type: Role})
   @ApiResponse({status: HttpStatus.NOT_FOUND, description: 'Role not found' })
   @Get('/:value')
   getByValue(@Param() dto: GetRoleByValueDto) {

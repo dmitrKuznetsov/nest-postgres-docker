@@ -29,7 +29,7 @@ export class UsersController {
  
   @ApiBearerAuth()
   @ApiOperation({summary: 'Add role'})
-  @ApiResponse({status: HttpStatus.OK, type: [AddRoleDto]})
+  @ApiResponse({status: HttpStatus.CREATED, type: AddRoleDto})
   @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'No access' })
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
@@ -40,7 +40,7 @@ export class UsersController {
  
   @ApiBearerAuth()
   @ApiOperation({summary: 'Ban user'})
-  @ApiResponse({status: HttpStatus.OK, type: [User]})
+  @ApiResponse({status: HttpStatus.CREATED, type: User})
   @ApiResponse({status: HttpStatus.FORBIDDEN, description: 'No access' })
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
