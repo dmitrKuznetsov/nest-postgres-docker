@@ -1,4 +1,3 @@
-https://www.youtube.com/watch?v=dDeWWQWMM-Y&t=126s  
 This RESTful application include: 
 - Working with Postgres Database. Sequelize ORM
 - User and roles administrating  
@@ -38,8 +37,5 @@ docker-compose -p rest-app up -d
 ```
 # Documentation 
 Open API: http://localhost:5000/api  
-
-# Tests
-Not implemented
 
 
