@@ -3,12 +3,12 @@ import { FilesService } from './../files/files.service';
 import { InjectModel } from '@nestjs/sequelize';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
-import { PostModel } from './posts.model';
+import { Post } from './posts.model';
 
 @Injectable()
 export class PostsService {
 
-  constructor(@InjectModel(PostModel) private postRepository: typeof PostModel,
+  constructor(@InjectModel(Post) private postRepository: typeof Post,
               private filesService : FilesService) {}
 
   async create(dto: CreatePostDto, image: any) {

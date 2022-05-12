@@ -10,7 +10,7 @@ interface PostCreationAttrs {
 }
 
 @Table({tableName:'posts'})
-export class PostModel extends Model<PostModel, PostCreationAttrs> {
+export class Post extends Model<Post, PostCreationAttrs> {
 
   @ApiProperty({example: 7})
   @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})

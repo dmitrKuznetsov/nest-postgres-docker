@@ -3,7 +3,7 @@ import { Controller, Post, Body, UploadedFile, UseInterceptors, HttpStatus, UseP
 import { CreatePostDto } from './dto/create-post.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { PostModel } from './posts.model';
+import { Post as PostModel }  from './posts.model';
 
 @ApiTags('Posts')
 @Controller('posts')
